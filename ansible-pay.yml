@@ -1,0 +1,30 @@
+---
+- name: Install and configure web server
+  hosts: webservers
+  become: true
+
+  vars:
+    http_port: 80
+
+  tasks:
+    - name: Ensure Apache is installed
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Apache is running
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Create a simple index.html
+      copy:
+        content: |
+          <html>
+          <body>
+          <h1>Hello, Ansible!</h1>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
