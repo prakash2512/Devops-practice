@@ -55,3 +55,49 @@ security_group_id = "sg-0cba6778782064335"
 ami_id            = "ami-0a0e5d9c7acc336f1"
 instance_type     = "t2.micro"
 key_name          = "new_key"
+
+
+#####interview question
+
+# Specify the required provider
+provider "aws" {
+  region = "us-west-2"  # Replace with your preferred region
+}
+
+# Data block to fetch the AMI ID for "ubuntu22"
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"]  # Canonical's account ID for official Ubuntu images
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-22.04-amd64-server-*"]
+  }
+}
+
+# Create 10 EC2 instances
+resource "aws_instance" "web_server" {
+  count         = 10
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  key_name      = "my-ec2-key"  # Replace with your key pair name
+  security_groups = ["my-security-group"]  # Ensure this security group allows SSH and HTTP
+
+  # User data script for installing Apache and copying index.html
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update
+              sudo apt install -y apache2
+              echo '${file("index.html")}' | sudo tee /var/www/html/index.html
+              sudo systemctl start apache2
+              sudo systemctl enable apache2
+              EOF
+
+  tags = {
+    Name = "WebServer-${count.index + 1}"
+  }
+}
+
+# Output the public IPs of the instances
+output "instance_ips" {
+  value = aws_instance.web_server[*].public_ip
+}
