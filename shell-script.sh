@@ -9,7 +9,7 @@ cp -r $source_dir/* $backup_dir/$date/
 
 echo "Backup completed successfully!"
 
-## RAM memoey reachs high
+## DISK memory reachs high
 #!/bin/bash
 threshold=80
 usage=$(df / | grep / | awk '{ print $5 }' | sed 's/%//g')
