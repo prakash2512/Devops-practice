@@ -1,0 +1,46 @@
+###Docker
+FROM maven  AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean install
+
+# Stage 3: Create the runtime image
+FROM azul/zulu-openjdk:21-latest
+WORKDIR /
+COPY --from=build /app/target/Renew-0.0.1-SNAPSHOT.jar /Renew-0.0.1-SNAPSHOT.jar
+EXPOSE 9000
+CMD ["java", "-jar", "Renew-0.0.1-SNAPSHOT.jar"]
+
+
+
+## Application.yml
+server:
+  port: 8079
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://healthmedpro:mawUDKsQR4TATgpQ@cluster0.3yian.mongodb.net/med-elite?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000
+      database: renew-wound-care
+
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+	  
+	  
+###Docker Compose 	  
+version: "3.1"
+
+services:
+
+  innoura_website_api:
+        image: innoura/renew_api_prod:latest
+        container_name: renew_api_prod
+        restart: always
+        ports:
+           - 8079:8079
