@@ -22,8 +22,8 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://username:password@cluster0.3yian.mongodb.net/med-elite?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000
-      database: renew-wound-care
+      uri: mongodb+srv://username:password@url&connectTimeoutMS=30000&socketTimeoutMS=30000
+      database: dbname
 
 
   servlet:
@@ -39,8 +39,8 @@ version: "3.1"
 services:
 
   innoura_website_api:
-        image: innoura/renew_api_prod:latest
-        container_name: renew_api_prod
+        image: imagename
+        container_name: containername
         restart: always
         ports:
            - 8079:8079
