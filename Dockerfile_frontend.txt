@@ -1,6 +1,6 @@
 ### .env
 
-NEXT_PUBLIC_PORTAL_BASE_URL = http://44.196.68.47:8079
+NEXT_PUBLIC_PORTAL_BASE_URL = http://ipadd:8079
 
 
 
@@ -39,8 +39,8 @@ version: "3.1"
 services:
 
   renew_ui_prod:
-        image: innoura/renew_ui_prod:latest
-        container_name: renew_ui_prod
+        image: imagename
+        container_name: containername
         restart: always
         ports:
            - 3000:3000
