@@ -22,7 +22,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://healthmedpro:mawUDKsQR4TATgpQ@cluster0.3yian.mongodb.net/med-elite?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000
+      uri: mongodb+srv://username:password@cluster0.3yian.mongodb.net/med-elite?retryWrites=true&w=majority&connectTimeoutMS=30000&socketTimeoutMS=30000
       database: renew-wound-care
 
 
