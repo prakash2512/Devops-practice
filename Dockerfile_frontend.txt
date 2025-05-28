@@ -1,0 +1,49 @@
+### .env
+
+NEXT_PUBLIC_PORTAL_BASE_URL = http://44.196.68.47:8079
+
+
+
+###Dockerfile
+
+# Use an official Node.js runtime as the base image
+FROM node:21
+
+# Create and set the working directory in the container
+WORKDIR /app
+
+# Copy only the necessary file for package installation
+COPY package.json .
+
+# Install project dependencies using Yarn and generate yarn.lock at runtime
+RUN yarn install --production=false
+
+# Copy the rest of the application files
+COPY . .
+
+# Build your React.js application
+RUN yarn build
+
+# Expose the port your application runs on
+EXPOSE 3000
+
+# Start the application
+CMD ["yarn", "start"]
+
+
+
+###docker-compose.yml
+
+version: "3.1"
+
+services:
+
+  renew_ui_prod:
+        image: innoura/renew_ui_prod:latest
+        container_name: renew_ui_prod
+        restart: always
+        ports:
+           - 3000:3000
+
+
+
