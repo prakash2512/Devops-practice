@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('H H * * 0') // Every Sunday (weekly)
+    }
+
+    environment {
+        IMAGE_NAME = 'my-static-app'
+        CONTAINER_NAME = 'static-prod'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/your-user/your-repo.git', branch: 'main'
+            }
+        }
+
+        stage('Build Static Files') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build' // outputs to build/ or dist/
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:latest ."
+            }
+        }
+
+        stage('Deploy to Prod') {
+            steps {
+                // Stop and remove old container
+                sh "docker stop ${CONTAINER_NAME} || true"
+                sh "docker rm ${CONTAINER_NAME} || true"
+
+                // Run new container
+                sh "docker run -d --name ${CONTAINER_NAME} -p 80:80 ${IMAGE_NAME}:latest"
+            }
+        }
+    }
+}
