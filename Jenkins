@@ -6,8 +6,10 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = 'my-static-app'
-        CONTAINER_NAME = 'static-prod'
+        IMAGE_NAME_FE = 'my-static-app'
+        CONTAINER_NAME_FE = 'static-prod'
+        IMAGE_NAME_BE = ''
+        CONTAINER_NAME_BE = ''
     }
 
     stages {
@@ -17,27 +19,32 @@ pipeline {
             }
         }
 
-        stage('Build Static Files') {
+        stage('Build Docker Image Frondend') {
             steps {
-                sh 'npm install'
-                sh 'npm run build' // outputs to build/ or dist/
+                sh "cd Jenkins/"
+                sh "docker build -t ${IMAGE_NAME_FE}:latest ."
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:latest ."
+                sh "cd Jenkins/"
+                sh "docker build -t ${IMAGE_NAME_BE}:latest ."
             }
         }
 
         stage('Deploy to Prod') {
             steps {
-                // Stop and remove old container
-                sh "docker stop ${CONTAINER_NAME} || true"
-                sh "docker rm ${CONTAINER_NAME} || true"
+                // Stop and remove old Frontend container
+                sh "docker stop ${CONTAINER_NAME_FE} || true"
+                sh "docker rm ${CONTAINER_NAME_FE} || true"
+               // Stop and remove old Backend container 
+                sh "docker stop ${CONTAINER_NAME_BE} || true"
+                sh "docker rm ${CONTAINER_NAME_BE} || true"
 
                 // Run new container
-                sh "docker run -d --name ${CONTAINER_NAME} -p 80:80 ${IMAGE_NAME}:latest"
+                sh "docker run -d --name ${CONTAINER_NAME_BE} -p 80:80 ${IMAGE_NAME_BE}:latest"
+                sh "docker run -d --name ${CONTAINER_NAME_FE} -p 80:80 ${IMAGE_NAME_FE}:latest"
             }
         }
     }
