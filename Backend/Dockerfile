@@ -1,5 +1,6 @@
 ###Docker
 FROM maven  AS build
+WORKDIR /
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean install
