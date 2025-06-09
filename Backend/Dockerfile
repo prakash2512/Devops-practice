@@ -9,5 +9,5 @@ RUN mvn clean install
 FROM azul/zulu-openjdk:21-latest
 WORKDIR /
 COPY --from=build /target/CCM-0.0.1-SNAPSHOT.jar /CCM-0.0.1-SNAPSHOT.jar
-EXPOSE 9009
+EXPOSE 8079
 CMD ["java", "-jar", "CCM-0.0.1-SNAPSHOT.jar"]
