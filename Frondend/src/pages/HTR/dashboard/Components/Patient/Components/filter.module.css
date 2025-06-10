@@ -1,0 +1,62 @@
+/* Updated styles.module.css */
+
+
+.appContainer {
+    height: 55vh;
+    overflow-y: scroll;
+    width: 400px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.appContainer::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+/* Scrollbar track (background area) */
+.appContainer::-webkit-scrollbar-track {
+    background: rgb(0, 175, 198);
+}
+
+/* Scrollbar thumb (the draggable part) */
+.appContainer::-webkit-scrollbar-thumb {
+    background: rgb(165, 247, 247);
+    /* Set thumb color to match the gradient's ending color */
+    border-radius: 5px;
+    /* Optional: Make the thumb rounded */
+}
+
+.sectionContainer {
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(20, 40, 50);
+    border-radius: 10px;
+}
+
+.sectionTitle {
+    font-size: 14px;
+    color: rgb(52, 177, 194);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.optionContainer {
+    background-color: rgb(30, 60, 70);
+    border: 1px solid rgb(52, 177, 194);
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+}
+
+.optionContainer:hover {
+    background-color: rgb(52, 177, 194);
+    color: black;
+}

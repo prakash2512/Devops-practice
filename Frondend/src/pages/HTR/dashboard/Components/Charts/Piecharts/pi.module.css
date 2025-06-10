@@ -1,0 +1,7 @@
+.piechartContainer {
+    background: linear-gradient(148deg, rgb(96, 174, 188) 42%, rgb(36, 170, 185) 53%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 8px;
+    height: 100%;
+    width: 14.3rem;
+}

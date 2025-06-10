@@ -1,0 +1,137 @@
+.htrSummaryWrapper {
+    height: 100vh;
+    width: 100%;
+    /* background: rgb(13, 69, 78); */
+    background: linear-gradient(194deg, rgb(15 56 62) 22%, rgb(4, 47, 50) 92%)
+}
+
+.headerSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 21px;
+    padding: 20px 10px;
+}
+
+.headerCardWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: scroll;
+    height: 15.2rem;
+
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.headerCardWrapper::-webkit-scrollbar {
+    height: 10px;
+    /* Adjust the height of the horizontal scrollbar */
+}
+
+/* Scrollbar track (background area) */
+.headerCardWrapper::-webkit-scrollbar-track {
+    background: rgb(13, 69, 78);
+    /* Set track to match the gradient's starting color */
+}
+
+/* Scrollbar thumb (the draggable part) */
+.headerCardWrapper::-webkit-scrollbar-thumb {
+    background: rgba(9, 115, 121, 1);
+    /* Set thumb color to match the gradient's ending color */
+    border-radius: 5px;
+    /* Optional: Make the thumb rounded */
+}
+
+/* Optional: Hover effect for the scrollbar thumb */
+.headerCardWrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(13, 69, 78, 1);
+    /* Lighter color on hover */
+}
+
+
+.titleHeader {
+    width: 100%;
+    color: #00FFFF;
+    /* Neon Cyan */
+    /* font-size: 24px; */
+    /* Adjust as needed */
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 3px #00FFFF;
+    /* Glowing effect */
+}
+
+.headerWrapper {
+    padding: 15px 7px;
+    border-bottom: 1px solid black;
+}
+
+.bodyContent {
+    padding: 15px 7px;
+    height: calc(100vh - [headerHeight]px);
+    /* Adjust height based on header height */
+    overflow-y: auto;
+    display: flex;
+    gap: 9px;
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.bodyContent::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+/* Scrollbar track (background area) */
+.bodyContent::-webkit-scrollbar-track {
+    background: rgb(0, 175, 198);
+}
+
+/* Scrollbar thumb (the draggable part) */
+.bodyContent::-webkit-scrollbar-thumb {
+    background: rgb(165, 247, 247);
+    /* Set thumb color to match the gradient's ending color */
+    border-radius: 5px;
+    /* Optional: Make the thumb rounded */
+}
+
+.contentBody {
+    width: 85%;
+}
+
+.sidebar {
+    width: 11.5%;
+}
+
+.container {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.routeItem {
+    margin-bottom: 12px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.routeItem:hover {
+    background-color: #e1f5fe;
+    transform: scale(1.05);
+}
+
+.routeItem:active {
+    background-color: #80deea;
+}
+
+.routeItemLabel {
+    color: #00796b;
+}

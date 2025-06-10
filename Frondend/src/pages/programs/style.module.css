@@ -1,0 +1,162 @@
+.pageContainer {
+  padding: 60px;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainBox {
+  max-width: 1000px;
+  max-height: 100vh;
+  /* height: 80%; */
+  width: 100%;
+  border-radius: 10px;
+  background: white;
+  position: relative;
+  border: none;
+}
+
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: black;
+}
+
+/* Back Button */
+.back {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.arrowIcon {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+/* Month & Year Selection */
+.selectionRow {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 14px;
+  color: black;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Custom Select Box */
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 14px;
+  background: transparent;
+  outline: none;
+  appearance: none;
+}
+
+.downArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: black;
+}
+
+/* Program Cards */
+.cardRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.programCard {
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.programCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.programText {
+  text-align: left;
+}
+
+.programName {
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+}
+
+.programShort {
+  font-size: 14px;
+  color: black;
+  margin-top: -5px;
+}
+
+/* Program Colors */
+.ccm { background-color: #DCF7FF; }
+.pcm { background-color: #D0E2E8; }
+.bhi { background-color: #D5E5FA; }
+.htr { background-color: #DED6EA; }
+
+/* Icon */
+.icon {
+  width: 60px;
+  height: 60px;
+}
+
+.errorBorder {
+  border: 1px solid red !important;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .programName {
+    font-size: 14px;
+  }
+
+  .programShort {
+    font-size: 12px;
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+}

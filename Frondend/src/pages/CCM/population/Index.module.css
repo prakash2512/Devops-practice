@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    height: 100%; /* Ensure the container takes full height */
+    gap: 20px; /* Add gap between components */
+    width: 100%;
+  }
+  
+  .populationContainer {
+    width: 100px;
+    flex: 3; /* Takes 75% of the available space */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  }
+  
+  .filtersContainer {
+    flex: 1; /* Takes 25% of the available space */
+    max-width: 200px; /* Optional: Limit the width of the filters */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Stack components vertically on smaller screens */
+    }
+  
+    .populationContainer,
+    .filtersContainer {
+      flex: 1; /* Take full width on smaller screens */
+      max-width: 100%; /* Remove max-width restriction */
+    }
+  
+    .filtersContainer {
+      margin-top: 20px; /* Add space between components */
+    }
+  }

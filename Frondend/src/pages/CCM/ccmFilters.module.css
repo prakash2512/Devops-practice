@@ -1,0 +1,86 @@
+.sidebarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 220px;
+  padding: 10px;
+  color: #fff;
+  height: 100vh; /* Full height of the viewport */
+  overflow-y: hidden; /* Disable scrolling for the entire container */
+}
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterItem {
+  background-color: #005580;
+  color: #fff;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.filterItem:hover {
+  background-color: #0077a8;
+  transform: translateX(3px);
+}
+
+.filterItem.selected {
+  background-color: #007bff;
+}
+
+.scrollableList {
+  max-height: calc(100vh - 400px); 
+  overflow-y: auto; 
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.listItem {
+  background-color: #005580;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: #0077a8;
+  transform: translateX(3px);
+}
+
+.listItem.selected {
+  background-color: #007bff;
+}
+
+.iconButton {
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-left: 8px;
+}
+
+.iconButton.active {
+  color: #00aaff;
+}
+
+.iconButton:hover {
+  color: #00aaff;
+}

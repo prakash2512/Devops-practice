@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    height: 100%; /* Ensure the container takes full height */
+    gap: 20px; /* Add gap between components */
+    width: 100%;
+  }
+  
+  .mainContent {
+    flex: 3 1; /* Takes 75% of the available space */
+    border-radius: 8px; /* Optional: Add rounded corners */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .mainContent,
+    .sidebar {
+      flex: 1; 
+      max-width: 100%;
+    }
+  
+    .sidebar {
+      margin-top: 20px; 
+    }
+  }

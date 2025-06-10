@@ -1,0 +1,148 @@
+.mainContentWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.pageContent {
+  flex: 1;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0; 
+  align-self: flex-start;
+}
+
+.hexRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.hexBox {
+  width: 180px;
+  height: 170px;
+  clip-path: polygon(15% 5%, 85% 5%, 100% 50%, 85% 95%, 15% 95%, 0% 50%);
+  background: linear-gradient(to bottom, #70305c, #10061a);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.hexStatBox {
+  padding: 20px;
+  text-align: center;
+}
+
+.hexLabel {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f2d9ff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.hexValue {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f2d9ff;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Chart Box Specific Styles */
+.chartHexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.hexChartBox {
+  padding: 0;
+  /* background: transparent; */
+  position: relative;
+}
+
+.chartWrapper {
+  width: 80%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.chartTitle {
+  color: #f2d9ff;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.patientTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: #edd1e4;
+  font-size: 14px;
+}
+  
+.patientTable th,
+.patientTable td {
+  border: 1px solid #8a4f7d;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.patientTable thead th {
+  background-color: #8a4f7d;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.chipContainer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  justify-content: center;
+}
+
+.chip {
+  padding: 4px 12px;
+  background: linear-gradient(to bottom, #70305c, #10061a);
+  border: 1px solid #f2d9ff;
+  color: #f2d9ff;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.selectedChip {
+  background: #f2d9ff;
+  color: #10061a;
+  border-color: #f2d9ff;
+}
+
+

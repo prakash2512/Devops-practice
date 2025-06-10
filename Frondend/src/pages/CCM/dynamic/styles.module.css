@@ -1,0 +1,306 @@
+.tableWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.tableContainer {
+  padding: 16px;
+  background-color: #f5f9fc;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+}
+
+.tableScrollContainer {
+  height: 100%;
+  overflow: auto;
+}
+
+.patientTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.stickyHeader th {
+  background-color: #33b5e5;
+  color: white;
+  text-align: center;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.evenRow {
+  background-color: #e6f7ff;
+}
+
+.oddRow {
+  background-color: white;
+}
+
+.patientTable td {
+  border: 1px solid #d1e9ff;
+  padding: 12px 16px;
+  color: #333;
+  font-size: 14px;
+}
+
+.dxLink a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.dxLink a:hover {
+  text-decoration: underline;
+  color: #004d99;
+}
+
+.icon {
+  margin-left: 4px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.caregapSection {
+  margin-bottom: 12px;
+}
+
+.caregapSection strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #0066cc;
+}
+
+.caregapSection ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.caregapSection li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* Edit Icons */
+.editIconContainer {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.editIcon {
+  color: #666;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.editIcon:hover {
+  color: #0066cc;
+}
+
+/* Edit Controls */
+.transferEditContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.select {
+  padding: 6px 8px;
+  border: 1px solid #99d6ff;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 13px;
+  color: #333;
+  width: 100%;
+}
+
+.noteInput {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #99d6ff;
+  border-radius: 4px;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.editButtons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.updateBtn,
+.cancelBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.updateBtn {
+  background-color: #0066cc;
+  color: white;
+}
+
+.updateBtn:hover {
+  background-color: #004d99;
+}
+
+.cancelBtn {
+  background-color: #cc3333;
+  color: white;
+}
+
+.cancelBtn:hover {
+  background-color: #992222;
+}
+
+.patientNameLink {
+  color: #0066cc;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.patientNameLink:hover {
+  text-decoration: underline;
+}
+
+.blurBackground {
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.select:invalid {
+  color: #999;
+}
+.select option[value=""] {
+  color: #999;
+}
+.select option {
+  color: #333;
+}
+
+/* Full Screen PDF Modal Styles */
+.fullScreenPdfModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdfModalHeader {
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pdfModalHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  color: #333;
+  transform: scale(1.1);
+}
+
+.pdfViewerContainer {
+  flex: 1;
+  padding: 0;
+  height: calc(100vh - 60px);
+  width: 100%;
+}
+
+.pdfIframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.loadingPdf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Make sure the modal appears above everything */
+.tableWrapper {
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tableContainer {
+    padding: 8px;
+  }
+  
+  .patientTable td {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .editButtons {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
