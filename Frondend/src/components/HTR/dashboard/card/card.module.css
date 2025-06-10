@@ -1,0 +1,46 @@
+/* card.module.css */
+
+/* Style for the card container */
+.card {
+    width: 100%;
+    /* max-width: 300px; */
+    /* margin: 20px auto; */
+    height: max-content;
+    padding: 10px;
+    background: rgb(40, 165, 188);
+    background: linear-gradient(148deg, rgb(25 107 122) 42%, rgb(14 71 77) 53%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #00FFFF;
+}
+
+/* Style for the title */
+.title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #00FFFF;
+
+    /* Center the title */
+}
+
+/* Style for the chart container */
+.chartContainer {
+    width: 100%;
+    /* Ensure it uses the full width */
+    /* Use a more consistent height for better appearance */
+}
+
+/* You can also apply color to other elements like the chart bars or borders */
+.apexcharts-bar-series .apexcharts-bar {
+    fill: #00bcd4;
+    /* Apply the color to the bars of the chart */
+}
+
+.apexcharts-toolbar {
+    display: none !important;
+}

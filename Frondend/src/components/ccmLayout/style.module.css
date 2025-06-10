@@ -1,0 +1,240 @@
+/* Layout Container */
+.layoutContainer {
+    display: flex;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  /* Sidebar */
+  .sidebarContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--background-color);
+    width: 200px;
+    padding: 20px;
+    color: var(--text-color);
+  }
+  
+  /* Month Selector */
+  .dateSection {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .monthDropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .monthDropdown::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  
+  .monthDropdown:hover,
+  .monthDropdown:focus {
+    box-shadow: var(--box-shadow);
+  }
+  
+  /* Menu Section */
+  .menuSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menuItem {
+    width: 100%;
+    font-size: 12px;
+    color: var(--primary-color);
+    margin: 15px 0;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: var(--transition);
+  }
+  
+  .menuItem:hover {
+    background-color: var(--hover-color);
+    color: var(--background-color);
+  }
+  
+  .activeMenuItem {
+    border: 2px solid var(--active-color);
+    padding: 10px;
+    color: var(--active-color);
+    box-shadow: var(--box-shadow), inset var(--box-shadow);
+  }
+  
+  /* Logo Section */
+  .logoSection {
+    text-align: center;
+  }
+  
+  .fullLogo {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Main Content */
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  
+  /* Sticky Header */
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  /* Four Box Section */
+  .boxContainer {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    left: 20px;
+  }
+  
+  .sectionBox {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: black;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .sectionBox:hover {
+    background-color: var(--hover-color);
+    color: var(--background-color);
+  }
+  
+  .activeSection {
+    background-color: var(--active-color);
+    color: var(--background-color);
+  }
+  
+  /* Back Button */
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 9px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .back:hover {
+    background-color: var(--hover-color);
+    color: var(--background-color);
+  }
+  
+  /* Header Title */
+  .headerText {
+    font-size: 21px;
+    font-weight: bold;
+    color: var(--text-color);
+    background: linear-gradient(90deg, #5df9d3, #b76de7);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+  }
+  
+  .headerText::after {
+    content: "AIKEN REHABILITATION AND CARE CENTER";
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    color: transparent;
+    text-shadow: 0 -2px 5px rgba(255, 255, 255, 0.2);
+    transform: scaleY(-1);
+    opacity: 0.5;
+  }
+  
+  /* Content Wrapper */
+  .contentWrapper {
+    padding: 20px;
+  }
+  
+  /* Page Content */
+  .pageContent {
+    color: var(--text-color);
+  }
+  
+  /* Right Sidebar (if needed) */
+  .rightSidebar {
+    width: 200px;
+    color: var(--text-color);
+    padding: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebarContainer {
+      width: 60px;
+      padding: 10px;
+    }
+  
+    .menuItem {
+      font-size: 10px;
+      padding: 5px;
+    }
+  
+    .monthDropdown {
+      font-size: 12px;
+      padding: 5px;
+    }
+  
+    .headerText {
+      font-size: 18px;
+    }
+  
+    .sectionBox {
+      width: 40px;
+      height: 40px;
+      font-size: 12px;
+    }
+  
+    .boxContainer {
+      left: 10px;
+      gap: 5px;
+    }
+  }
