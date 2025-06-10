@@ -1,24 +1,16 @@
-
 # Use an official Node.js runtime as the base image
 FROM node:21
-
 # Create and set the working directory in the container
 WORKDIR /
-
 # Copy only the necessary file for package installation
 COPY package.json .
-
 # Install project dependencies using Yarn and generate yarn.lock at runtime
 RUN npm install --production=false
-
 # Copy the rest of the application files
 COPY . .
-
 # Build your React.js application
-RUN npm build
-
+RUN npm run build
 # Expose the port your application runs on
 EXPOSE 3000
-
 # Start the application
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
