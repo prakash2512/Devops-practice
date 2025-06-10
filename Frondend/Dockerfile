@@ -5,7 +5,7 @@ WORKDIR /
 # Copy only the necessary file for package installation
 COPY package.json .
 # Install project dependencies using Yarn and generate yarn.lock at runtime
-RUN npm install --production=false
+RUN npm install
 # Copy the rest of the application files
 COPY . .
 # Build your React.js application
