@@ -3,19 +3,19 @@
 FROM node:21
 
 # Create and set the working directory in the container
-WORKDIR /app
+WORKDIR /
 
 # Copy only the necessary file for package installation
 COPY package.json .
 
 # Install project dependencies using Yarn and generate yarn.lock at runtime
-RUN yarn install --production=false
+RUN npm install --production=false
 
 # Copy the rest of the application files
 COPY . .
 
 # Build your React.js application
-RUN yarn build
+RUN npm build
 
 # Expose the port your application runs on
 EXPOSE 3000
