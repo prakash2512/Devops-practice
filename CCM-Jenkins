@@ -1,0 +1,73 @@
+pipeline {
+    agent any
+
+    environment {
+        // Docker image names
+        IMAGE_NAME_BCK = 'ccm-bck:staging'
+        IMAGE_NAME_FNT = 'ccm-fnt:staging'
+
+        // Docker container names
+        CONTAINER_NAME_BCK = 'ccm-bck'
+        CONTAINER_NAME_FNT = 'ccm-fnt'
+
+        // Git credentials
+        GIT_CREDENTIALS = 'Git_creden'
+    }
+
+    stages {
+        stage('Clone Backend Repo') {
+            steps {
+                dir('backend') {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/yogaraj-healthmedpro/Medelite-project.git', branch: 'yogaraj'
+                }
+            }
+        }
+
+        stage('Clone Frontend Repo') {
+            steps {
+                dir('frontend') {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/247HealthMedPro/medelite_reports-ui.git', branch: 'praveen-hmp1'
+                }
+            }
+        }
+
+        stage('Build Docker Image - Backend') {
+            steps {
+                dir('backend') {
+                    sh "docker build -t ${IMAGE_NAME_BCK} ."
+                }
+            }
+        }
+
+        stage('Build Docker Image - Frontend') {
+            steps {
+                dir('frontend') {
+                    sh "docker build -t ${IMAGE_NAME_FNT} ."
+                }
+            }
+        }
+
+        stage('Stop Old Containers') {
+            steps {
+                sh "docker stop ${CONTAINER_NAME_BCK} || true"
+                sh "docker rm ${CONTAINER_NAME_BCK} || true"
+
+                sh "docker stop ${CONTAINER_NAME_FNT} || true"
+                sh "docker rm ${CONTAINER_NAME_FNT} || true"
+            }
+        }
+
+        stage('Deploy Backend Container') {
+            steps {
+                sh "docker run -d --name ${CONTAINER_NAME_BCK} -p 9000:9001 ${IMAGE_NAME_BCK}"
+            }
+        }
+
+        stage('Deploy Frontend Container') {
+            steps {
+                sh "docker run -d --name ${CONTAINER_NAME_FNT} -p 80:3000 ${IMAGE_NAME_FNT}"
+            }
+        }
+    }
+}
+
