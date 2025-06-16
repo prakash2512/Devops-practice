@@ -79,7 +79,7 @@ pipeline {
 		stage('Taking Build and Restart Backend Container') {
             steps {
                 sh """
-				    docker build -t ${IMAGE_NAME_BCK} .
+		    docker build -t ${IMAGE_NAME_BCK} .
                     docker stop ${CONTAINER_NAME_BCK} || true
                     docker rm ${CONTAINER_NAME_BCK} || true
                     docker run -d --name ${CONTAINER_NAME_BCK} -p 9898:9898 ${IMAGE_NAME_BCK}
@@ -109,7 +109,7 @@ pipeline {
         stage('Taking Build Frontend and Restarting Frontend Container') {
             steps {
                 sh """
-				            docker build -t ${IMAGE_NAME_FNT} .
+		    docker build -t ${IMAGE_NAME_FNT} .
                     docker stop ${CONTAINER_NAME_FNT} || true
                     docker rm ${CONTAINER_NAME_FNT} || true
                     docker run -d --name ${CONTAINER_NAME_FNT} -p 3000:3000 ${IMAGE_NAME_FNT}
