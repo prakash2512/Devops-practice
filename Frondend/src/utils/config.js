@@ -1,1 +1,0 @@
-export const portalUrl = process.env.NEXT_PUBLIC_PORTAL_BASE_URL;
