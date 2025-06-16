@@ -1,0 +1,120 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME_BCK = 'ccm-bck:staging'
+        IMAGE_NAME_FNT = 'ccm-fnt:staging'
+        CONTAINER_NAME_BCK = 'ccm-bck'
+        CONTAINER_NAME_FNT = 'ccm-fnt'
+        GIT_CREDENTIALS = 'Git_creden'
+    }
+
+    stages {
+        stage('Clone Backend Repo') {
+            steps {
+                dir('backend') {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/yogaraj-healthmedpro/Medelite-project.git', branch: 'yogaraj'
+                }
+            }
+        }
+        stage('Clone Frontend Repo') {
+            steps {
+                dir('frontend') {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/247HealthMedPro/medelite_reports-ui.git', branch: 'Lokesh-HMP'
+                }
+            }
+        }
+        stage('Build Docker Image - Backend') {
+            steps {
+                dir('backend') {
+                    sh "docker build -t ${IMAGE_NAME_BCK} ."
+                }
+            }
+        }
+        stage('Restart Backend Container') {
+            steps {
+                sh """
+                    docker stop ${CONTAINER_NAME_BCK} || true
+                    docker rm ${CONTAINER_NAME_BCK} || true
+                    docker run -d --name ${CONTAINER_NAME_BCK} -p 9000:9898 ${IMAGE_NAME_BCK}
+                """
+            }
+        }
+
+        stage('Build Docker Image - Frontend') {
+            steps {
+                dir('frontend') {
+                    sh "docker build -t ${IMAGE_NAME_FNT} ."
+                }
+            }
+        }
+
+        stage('Restart Frontend Container') {
+            steps {
+                sh """
+                    docker stop ${CONTAINER_NAME_FNT} || true
+                    docker rm ${CONTAINER_NAME_FNT} || true
+                    docker run -d --name ${CONTAINER_NAME_FNT} -p 80:3000 ${IMAGE_NAME_FNT}
+                """
+            }
+        }
+    }
+}
+##### Backend
+
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME_BCK = 'ccm-bck:staging'
+        CONTAINER_NAME_BCK = 'ccm-bck'
+        GIT_CREDENTIALS = 'Git_creden'
+    }
+    stages {
+        stage('Clone Backend Repo') {
+            steps {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/yogaraj-healthmedpro/Medelite-project.git', branch: 'yogaraj'   
+            }
+        }
+		stage('Taking Build and Restart Backend Container') {
+            steps {
+                sh """
+				    docker build -t ${IMAGE_NAME_BCK} .
+                    docker stop ${CONTAINER_NAME_BCK} || true
+                    docker rm ${CONTAINER_NAME_BCK} || true
+                    docker run -d --name ${CONTAINER_NAME_BCK} -p 9898:9898 ${IMAGE_NAME_BCK}
+                """
+            }
+        }
+    }
+}
+
+#### Frontend
+
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME_FNT = 'ccm-fnt:staging'
+        CONTAINER_NAME_FNT = 'ccm-fnt'
+        GIT_CREDENTIALS = 'Git_creden'
+    }
+	stages {
+        stage('Clone Frontend Repo') {
+            steps {
+                
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/247HealthMedPro/medelite_reports-ui.git', branch: 'Lokesh-HMP' 
+            }
+        }
+        stage('Taking Build Frontend and Restarting Frontend Container') {
+            steps {
+                sh """
+				            docker build -t ${IMAGE_NAME_FNT} .
+                    docker stop ${CONTAINER_NAME_FNT} || true
+                    docker rm ${CONTAINER_NAME_FNT} || true
+                    docker run -d --name ${CONTAINER_NAME_FNT} -p 3000:3000 ${IMAGE_NAME_FNT}
+                """
+            }
+        }
+    }
+}
