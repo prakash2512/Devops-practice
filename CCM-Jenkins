@@ -18,7 +18,7 @@ pipeline {
         stage('Clone Backend Repo') {
             steps {
                 dir('backend') {
-                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/yogaraj-healthmedpro/Medelite-project.git', branch: 'yogaraj'
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/', branch: ''
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Clone Frontend Repo') {
             steps {
                 dir('frontend') {
-                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/247HealthMedPro/medelite_reports-ui.git', branch: 'praveen-hmp1'
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com', branch: ''
                 }
             }
         }
