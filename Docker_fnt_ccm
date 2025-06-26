@@ -1,7 +1,7 @@
 # Use an official Node.js runtime as the base image
 FROM node:21
 # Create and set the working directory in the container
-WORKDIR /
+WORKDIR /app
 # Copy only the necessary file for package installation
 COPY package.json .
 # Install project dependencies using Yarn and generate yarn.lock at runtime
