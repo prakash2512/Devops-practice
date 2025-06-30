@@ -8,6 +8,6 @@ RUN mvn clean install
 # Create the runtime image
 FROM azul/zulu-openjdk:21-latest
 WORKDIR /app
-COPY --from=build /target/CCM-0.0.1-SNAPSHOT.jar /CCM-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/CCM-0.0.1-SNAPSHOT.jar /app/CCM-0.0.1-SNAPSHOT.jar
 EXPOSE 9000
-CMD ["java", "-jar", "CCM-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/CCM-0.0.1-SNAPSHOT.jar"]
