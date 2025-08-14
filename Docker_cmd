@@ -9,3 +9,4 @@ docker ps -a
 docker stop containername
 docker rm containername
 docker run -d --name containername -p hostport:containerport imagename
+docker rmi imagename
