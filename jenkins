@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME_BCK = 'selenium-grid:staging'
+        CONTAINER_NAME_BCK = 'selenium-grid'
+        GIT_CREDENTIALS = 'Git_creden'
+        HOSTPORT ='9003'
+        CONTAINERPORT ='8085'
+    }
+    stages {
+        stage('Clone Backend Repo') {
+            steps {
+                    git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/akshaya-healthmedpro/selenium-grid-auth.git', branch: 'main'   
+            }
+        }
+		stage('Taking Build and Restart Backend Container') {
+            steps {
+                sh """
+		                docker build -t ${IMAGE_NAME_BCK} .
+                    docker stop ${CONTAINER_NAME_BCK} || true
+                    docker rm ${CONTAINER_NAME_BCK} || true
+                    docker run -d --name ${CONTAINER_NAME_BCK} -p ${HOSTPORT}:${CONTAINERPORT} ${IMAGE_NAME_BCK}
+                """
+            }
+        }
+    }
+}
