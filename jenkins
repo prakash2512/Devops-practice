@@ -17,7 +17,7 @@ pipeline {
 		stage('Taking Build and Restart Backend Container') {
             steps {
                 sh """
-		                docker build -t ${IMAGE_NAME_BCK} .
+		            docker build -t ${IMAGE_NAME_BCK} .
                     docker stop ${CONTAINER_NAME_BCK} || true
                     docker rm ${CONTAINER_NAME_BCK} || true
                     docker run -d --name ${CONTAINER_NAME_BCK} -p ${HOSTPORT}:${CONTAINERPORT} ${IMAGE_NAME_BCK}
