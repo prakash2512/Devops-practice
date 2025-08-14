@@ -27,15 +27,15 @@ SERVICE="apache2"  # change to "httpd" if using CentOS/RHEL
 
 # Check if Apache is active
 if systemctl is-active --quiet "$SERVICE"; then
-    echo "✅ Apache ($SERVICE) is running."
+    echo " Apache ($SERVICE) is running."
 else
-    echo "⚠️ Apache ($SERVICE) is not running. Starting..."
+    echo " Apache ($SERVICE) is not running. Starting..."
     sudo systemctl start "$SERVICE"
 
     # Verify if it started successfully
     if systemctl is-active --quiet "$SERVICE"; then
-        echo "✅ Apache ($SERVICE) started successfully."
+        echo " Apache ($SERVICE) started successfully."
     else
-        echo "❌ Failed to start Apache ($SERVICE). Check logs."
+        echo " Failed to start Apache ($SERVICE). Check logs."
     fi
 fi
