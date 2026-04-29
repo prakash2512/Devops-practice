@@ -1,0 +1,91 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'prakash25121994/test_fnt:latest'
+        CONTAINER_NAME = 'test_fnt'
+        GIT_CREDENTIALS = 'Git_creden'
+
+        STAGING_SERVER = 'ubuntu@34.235.7.203'
+        //PRODUCTION_SERVER = 'ubuntu@PROD_IP'
+    }
+
+    stages {
+
+        stage('Clone Repo') {
+            steps {
+                git credentialsId: "${GIT_CREDENTIALS}",
+                    url: 'https://github.com/247HealthMedPro/singular-AI-UI.git',
+                    branch: 'main'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh """
+                docker build -t ${IMAGE_NAME} .
+                """
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh """
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    #docker push ${IMAGE_NAME}
+                    """
+                }
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                 )]) {
+                sshagent(['staging-ssh-key']) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${STAGING_SERVER} '
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker pull ${IMAGE_NAME}
+                        docker stop ${CONTAINER_NAME} || true
+                        docker rm ${CONTAINER_NAME} || true
+                        docker run -d --name ${CONTAINER_NAME} -p 3002:3000 ${IMAGE_NAME}
+                    '
+                    """
+                }
+              }
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+		        withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                 )]) {
+               input message: "Deploy to Production?"
+                sshagent(['prod-ssh-key']) {
+                   sh """
+                    ssh -o StrictHostKeyChecking=no ${PRODUCTION_SERVER} '
+					    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker pull ${IMAGE_NAME}
+                        docker stop ${CONTAINER_NAME} || true
+                        docker rm ${CONTAINER_NAME} || true
+                        docker run -d --name ${CONTAINER_NAME} -p 3000:3000 ${IMAGE_NAME}
+                    '
+                    """
+                }
+            }
+        }
+    }
+  }
+}
