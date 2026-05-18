@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME_BCK = 'med-bck'
+        CONTAINER_NAME_BCK = 'med-bck'
+        GIT_CREDENTIALS = 'Git_creden'
+        GIT_REPO_URL = 'https://github.com/yogaraj-healthmedpro/Medelite-project.git'
+        GIT_BRANCH = 'development'
+        HOST_PORT = '9002'
+        CONTAINER_PORT = '9002'
+    }
+
+    stages {
+        stage('Clone Backend Repo') {
+            steps {
+                git credentialsId: "${GIT_CREDENTIALS}", url: "${GIT_REPO_URL}", branch: "${GIT_BRANCH}"
+            }
+        }
+
+        stage('Build and Restart Backend Container') {
+            steps {
+                script {
+                    sh """
+                        echo "[INFO] Building Docker image..."
+                        #docker build -t ${IMAGE_NAME_BCK} .
+                        #cp /home/ubuntu/backup/backend/application.yml src/main/resources/
+                        cp /home/ubuntu/backup/backend/Dockerfile .
+                        docker build -t ${IMAGE_NAME_BCK}:${BUILD_NUMBER} -t ${IMAGE_NAME_BCK}:prod .
+
+                        echo "[INFO] Stopping existing container (if any)..."
+                        bash backupdockerlogs.sh
+                        docker stop ${CONTAINER_NAME_BCK} || true
+                        docker rm ${CONTAINER_NAME_BCK} || true
+
+                        echo "[INFO] Running new container..."
+                        # docker run -d --name ${CONTAINER_NAME_BCK} --network internal_net -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME_BCK}
+                        docker-compose up -d
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo '[ERROR] Build or deployment failed.'
+        }
+        success {
+            echo '[SUCCESS] Backend container is up and running.'
+        }
+    }
+}
