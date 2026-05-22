@@ -22,7 +22,7 @@ for NAME in "${CONTAINERS[@]}"; do
   echo "📦 Backing up logs for $NAME ($ID)"
 
   # 1️⃣ Human-readable logs
-  docker logs "$NAME" \
+  docker logs -t "$NAME" \
     > "$BACKUP_DIR/${NAME}_${TIMESTAMP}.log"
 
   # 2️⃣ Raw Docker JSON logs (ID-based)
