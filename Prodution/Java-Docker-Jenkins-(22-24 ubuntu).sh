@@ -66,3 +66,10 @@ sudo apt-get update
 sudo apt install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo usermod -aG docker jenkins
+sudo systemctl restart docker
+sudo systemctl restart jenkins
+mkdir -p /var/backups/docker-logs/
+chown -R jenkins:jenkins /var/backups/docker-logs
